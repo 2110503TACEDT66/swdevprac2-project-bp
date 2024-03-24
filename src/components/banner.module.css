@@ -10,6 +10,12 @@
 .bannerText {
     position: relative;
     top: 100px;
+    left: auto;
+    right: auto;
     z-index: 20;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }

@@ -12,7 +12,7 @@ export default function PromoteCard() {
     return (
         <div className="w-[80%] shadow-lg mx-[10%] my-10 p-2
         rounded-lg bg-gray-200 flex flex-row">
-            <VideoPlayer vdoSrc="/video/getvaccine.mp4" isPlaying={playing}/>
+            <VideoPlayer vdoSrc="/video/getrestaurant.mp4" isPlaying={playing}/>
             <div className="m-5 text-black">
                 Get your seat now.
                 <button className="block rounded-md bg-sky-600

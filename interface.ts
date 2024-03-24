@@ -20,10 +20,10 @@ export interface RestaurantJson {
   data: RestaurantItem[];
 }
 
-export interface BookingItem {
+export interface ReservationItem {
   name: string;
   surname: string;
   id: string;
   restaurant: string;
-  bookDate: string;
+  reserveDate: string;
 }

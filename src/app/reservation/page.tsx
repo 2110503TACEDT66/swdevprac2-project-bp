@@ -4,36 +4,36 @@ import { Select, MenuItem, TextField } from "@mui/material";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { addBooking } from "@/redux/features/bookSlice";
-import { BookingItem } from "../../../interface";
+import { addReservation } from "@/redux/features/reserveSlice";
+import { ReservationItem } from "../../../interface";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 
-export default function Booking() {
+export default function Reservation() {
   const dispatch = useDispatch<AppDispatch>();
   
   const [name, setName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [citizenId, setCitizenId] = useState<string>("");
   const [restaurant, setRestaurant] = useState<string>("Chula");
-  const [bookDate, setBookDate] = useState<Dayjs|null>(null);
+  const [reserveDate, setReserveDate] = useState<Dayjs|null>(null);
 
-  const makeBooking = () => {
-    if (name && lastName && citizenId && restaurant && bookDate) {
-      const item: BookingItem = {
+  const makeReservation = () => {
+    if (name && lastName && citizenId && restaurant && reserveDate) {
+      const item: ReservationItem = {
         name: name,
         surname: lastName,
         id: citizenId,
         restaurant: restaurant,
-        bookDate: dayjs(bookDate).format("YYYY/MM/DD"),
+        reserveDate: dayjs(reserveDate).format("YYYY/MM/DD"),
       }
-      dispatch(addBooking(item))
+      dispatch(addReservation(item))
     }
   }
 
   return (
     <main className="w-[100%] flex flex-col items-center space-y-4">
-      <div className="text-xl font-medium">Vaccine Booking</div>
+      <div className="text-xl font-medium">Restaurant Reservation</div>
       
       <div className="w-fit space-y-2">
         <TextField variant="standard" name="Name" label="Name" className="block"
@@ -50,13 +50,13 @@ export default function Booking() {
             <MenuItem value="Thammasat">Thammasat University Restaurant</MenuItem>
         </Select>
 
-        <DateReserve onDateChange={(value: Dayjs) => {setBookDate(value)}}/>
+        <DateReserve onDateChange={(value: Dayjs) => {setReserveDate(value)}}/>
       </div>
 
-      <button name="Book Vaccine" className="block rounded-md bg-sky-600
+      <button name="Reserve Restaurant" className="block rounded-md bg-sky-600
       hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-      onClick={makeBooking}>
-        Book Vaccine
+      onClick={makeReservation}>
+        Reserve Restaurant
       </button>
     </main>
   )

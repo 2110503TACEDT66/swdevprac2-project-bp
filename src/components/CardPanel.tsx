@@ -56,9 +56,6 @@ export default function CardPanel() {
             ))
         }
         </div>
-        { Array.from(compareList.keys()).map( (restaurant) => <div key={restaurant} data-testid={restaurant}
-            onClick={()=>dispatchCompare({type: "remove", restaurantName:restaurant})}>
-            {restaurant}: {compareList.get(restaurant)}</div> ) }
       </div>
     )
   }

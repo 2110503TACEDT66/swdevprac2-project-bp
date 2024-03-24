@@ -3,11 +3,11 @@ import InteractiveCard from "./InteractiveCard";
 import { Rating } from "@mui/material";
 import { useState } from "react";
 
-export default function Card( { hospitalName, imgSrc, onCompare }:
-  { hospitalName: string, imgSrc: string, onCompare?: Function } ) {
+export default function Card( { restaurantName, imgSrc, onCompare }:
+  { restaurantName: string, imgSrc: string, onCompare?: Function } ) {
   
   return (
-    <InteractiveCard contentName={hospitalName} onCompare={onCompare}>
+    <InteractiveCard contentName={restaurantName} onCompare={onCompare}>
         <div className="w-full h-[70%] relative rounded-t-lg">
             <Image src={imgSrc}
                 alt="Product Picture"
@@ -16,7 +16,7 @@ export default function Card( { hospitalName, imgSrc, onCompare }:
                 className="object-cover rounded-t-lg"
             />
         </div>
-        <div className="w-full h-[15%] p-[10px]">{hospitalName}</div>
+        <div className="w-full h-[15%] p-[10px]">{restaurantName}</div>
     </InteractiveCard>
   )
 }

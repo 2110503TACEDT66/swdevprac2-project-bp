@@ -15,16 +15,16 @@ export default function Booking() {
   const [name, setName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [citizenId, setCitizenId] = useState<string>("");
-  const [hospital, setHospital] = useState<string>("Chula");
+  const [restaurant, setRestaurant] = useState<string>("Chula");
   const [bookDate, setBookDate] = useState<Dayjs|null>(null);
 
   const makeBooking = () => {
-    if (name && lastName && citizenId && hospital && bookDate) {
+    if (name && lastName && citizenId && restaurant && bookDate) {
       const item: BookingItem = {
         name: name,
         surname: lastName,
         id: citizenId,
-        hospital: hospital,
+        restaurant: restaurant,
         bookDate: dayjs(bookDate).format("YYYY/MM/DD"),
       }
       dispatch(addBooking(item))
@@ -43,11 +43,11 @@ export default function Booking() {
         <TextField variant="standard" name="Citizen ID" label="Citizen ID" className="block"
           onChange={(event) => {setCitizenId(event.target.value)}}/>
 
-        <Select variant="standard" name="hospital" id="hospital"
-        className="h[2em] w-[200px]" onChange={(event) => {setHospital(event.target.value as string)}}>
-            <MenuItem value="Chula">Chulalongkorn Hospital</MenuItem>
-            <MenuItem value="Rajavithi">Rajavithi Hospital</MenuItem>
-            <MenuItem value="Thammasat">Thammasat University Hospital</MenuItem>
+        <Select variant="standard" name="restaurant" id="restaurant"
+        className="h[2em] w-[200px]" onChange={(event) => {setRestaurant(event.target.value as string)}}>
+            <MenuItem value="Chula">Chulalongkorn Restaurant</MenuItem>
+            <MenuItem value="Rajavithi">Rajavithi Restaurant</MenuItem>
+            <MenuItem value="Thammasat">Thammasat University Restaurant</MenuItem>
         </Select>
 
         <DateReserve onDateChange={(value: Dayjs) => {setBookDate(value)}}/>

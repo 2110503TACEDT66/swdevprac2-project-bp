@@ -1,27 +1,29 @@
-export interface HospitalItem {
+export interface RestaurantItem {
   _id: string;
+  ลำดับ: number;
   name: string;
   address: string;
   district: string;
   province: string;
   postalcode: string;
   tel: string;
+  region: string;
   picture: string;
-  __v: number;
+  reservations: Object[];
   id: string;
 }
 
-export interface HospitalJson {
+export interface RestaurantJson {
   success: boolean;
   count: number;
   pagination: Object;
-  data: HospitalItem[];
+  data: RestaurantItem[];
 }
 
 export interface BookingItem {
   name: string;
   surname: string;
   id: string;
-  hospital: string;
+  restaurant: string;
   bookDate: string;
 }

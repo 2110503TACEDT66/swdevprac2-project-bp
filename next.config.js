@@ -3,7 +3,7 @@ const withBuilderDevTools = require("@builder.io/dev-tools/next")();
 /** @type {import('next').NextConfig} */
 const nextConfig = withBuilderDevTools({
   images: {
-    domains: ["drive.google.com"],
+    domains: ["drive.google.com", "img.freepik.com", "www.shutterstock.com", "www.so-bangkok.com"],
   },
   async headers() {
     return [

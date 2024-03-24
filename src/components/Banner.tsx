@@ -33,9 +33,9 @@ export default function Banner() {
           m-2 rounded z-30 absolute bottom-0 right-0
           hover:bg-cyan-600 hover:text-white
           hover: border-transparent"
-          onClick={(e) => { e.stopPropagation(); router.push("/hospital"); }}
+          onClick={(e) => { e.stopPropagation(); router.push("/restaurant"); }}
           >
-          Select Your Hospital NOW
+          Select Your Restaurant NOW
         </button>
     </div>
   )

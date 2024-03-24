@@ -1,3 +1,4 @@
+import getUserProfile from "@/libs/getUserProfile";
 import userLogIn from "@/libs/userLogIn";
 import { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
@@ -20,6 +21,10 @@ export const authOptions: AuthOptions = {
                 
                 if (!credentials) return null
                 const user = await userLogIn(credentials.email, credentials.password);
+                const userData = await getUserProfile(user.token);
+                user._id = userData._id
+                user.name = userData.name
+                user.email = userData.email
 
                 if (user) {
                     // Included in JWT token

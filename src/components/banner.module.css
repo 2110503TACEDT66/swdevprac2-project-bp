@@ -12,4 +12,5 @@
     top: 100px;
     z-index: 20;
     text-align: center;
+    mix-blend-mode: normal;
 }

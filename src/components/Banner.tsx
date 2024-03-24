@@ -22,7 +22,10 @@ export default function Banner() {
     >
       <Image src={covers[index]} alt="cover" fill={true} objectFit="cover" />
       {session ? (
-        <div className="z-20 absolute top-5 left-10 font-semibold text-cyan-50 text-xl">
+        <div
+          className="z-20 absolute top-5 left-10 font-semibold text-white text-xl"
+          style={{ mixBlendMode: "difference" }}
+        >
           Welcome back! {session.user?.name}
         </div>
       ) : null}

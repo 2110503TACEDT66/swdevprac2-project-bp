@@ -72,6 +72,7 @@ export default async function Restaurant() {
         <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
           <RestaurantCatalog restaurantsJson={restaurants}/>
         </Suspense>
+        <CardPanel/>
     </main>
   )
 }

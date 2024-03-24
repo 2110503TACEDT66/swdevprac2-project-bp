@@ -12,10 +12,9 @@ export default function RegisterPage() {
     const { data: session } = useSession();
     const router = useRouter();
 
-    const handleRegister = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        await userRegister(name, tel, email, password)
         await signIn("credentials", { email: email, password: password })
 
         router.push('/myreservation');
@@ -28,16 +27,8 @@ export default function RegisterPage() {
 
     return (
         <div>
-            <h1>Register</h1>
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-                </div>
-                <div>
-                    <label>Telephone:</label>
-                    <input type="tel" value={tel} onChange={(e) => setTel(e.target.value)} required />
-                </div>
+            <h1>Login</h1>
+            <form onSubmit={handleLogin}>
                 <div>
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -46,7 +37,7 @@ export default function RegisterPage() {
                     <label>Password:</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     );

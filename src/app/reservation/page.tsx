@@ -91,11 +91,9 @@ export default function Reservation() {
               <MenuItem disabled value="">
                 <em>Choose Restaurant</em>
               </MenuItem>
-              <MenuItem value="Chula">Chulalongkorn Restaurant</MenuItem>
-              <MenuItem value="Rajavithi">Rajavithi Restaurant</MenuItem>
-              <MenuItem value="Thammasat">
-                Thammasat University Restaurant
-              </MenuItem>
+              <MenuItem value="Botanist">The Botanist's Table</MenuItem>
+              <MenuItem value="Brick">Brick & Brew</MenuItem>
+              <MenuItem value="Skylight">Metropolitan Skylight</MenuItem>
             </Select>
           </div>
           <DateReserve

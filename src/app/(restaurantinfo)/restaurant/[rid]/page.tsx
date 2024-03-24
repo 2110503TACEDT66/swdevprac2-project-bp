@@ -1,9 +1,9 @@
 import getRestaurant from "@/libs/getRestaurant";
 import Image from "next/image";
 
-export default async function RestaurantDetailPage( {params}: { params: {hid: string} } ) {
+export default async function RestaurantDetailPage( {params}: { params: {rid: string} } ) {
   // TODO: Uncomment this
-  // const restaurantJson = await getRestaurant(params.hid)
+  // const restaurantJson = await getRestaurant(params.rid)
   // const restaurantData = restaurantJson.data
 
   // Mock Data for Demonstration Only
@@ -55,7 +55,7 @@ export default async function RestaurantDetailPage( {params}: { params: {hid: st
       "https://www.so-bangkok.com/wp-content/uploads/sites/47/2023/04/1-4-DSC_8378.jpg",
   });
 
-  const restaurantData = mockRestaurantRepo.get(params.hid);
+  const restaurantData = mockRestaurantRepo.get(params.rid);
   
   return (
     <main className="text-center p-5">
@@ -78,5 +78,5 @@ export default async function RestaurantDetailPage( {params}: { params: {hid: st
 }
 
 // export async function generateStaticParams() {
-//   return [{hid: "001"}, {hid: "002"}, {hid: "003"}];
+//   return [{rid: "001"}, {rid: "002"}, {rid: "003"}];
 // }

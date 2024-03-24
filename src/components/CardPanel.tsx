@@ -36,9 +36,9 @@ export default function CardPanel() {
 
     // Mock Data for Demonstration Only
     // const mockRestaurantRepo = [
-    //     {hid: "001", name: "Chulalongkorn Restaurant", image: "/img/chula.jpg"},
-    //     {hid: "002", name: "Rajavithi Restaurant", image: "/img/rajavithi.jpg"},
-    //     {hid: "003", name: "Thammasat University Restaurant", image: "/img/thammasat.jpg"},
+    //     {rid: "001", name: "Chulalongkorn Restaurant", image: "/img/chula.jpg"},
+    //     {rid: "002", name: "Rajavithi Restaurant", image: "/img/rajavithi.jpg"},
+    //     {rid: "003", name: "Thammasat University Restaurant", image: "/img/thammasat.jpg"},
     // ]
 
     if (!restaurantResponse) return (<p>Restaurant Panel is Loading</p>);

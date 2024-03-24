@@ -14,7 +14,7 @@ export default function PromoteCard() {
         rounded-lg bg-gray-200 flex flex-row">
             <VideoPlayer vdoSrc="/video/getvaccine.mp4" isPlaying={playing}/>
             <div className="m-5">
-                Get your vaccine today.
+                Get your seat now.
                 <button className="block rounded-md bg-sky-600
                     hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
                     onClick={() => { setPlaying(!playing) }}>

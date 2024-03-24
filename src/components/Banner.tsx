@@ -11,32 +11,41 @@ export default function Banner() {
   const router = useRouter();
   const { data: session } = useSession();
   console.log(session?.user.token);
+  
 
   return (
-    <div className={styles.banner} onClick={()=>{ setIndex((index + 1) % covers.length) }}>
-        <Image src={covers[index]}
-            alt="cover"
-            fill={true}
-            objectFit="cover"
-        />
-        {
-          session ? <div className="z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl">
-            Hello {session.user?.name}</div>
-            : null
-        }
-        <div className={styles.bannerText}>
-            <h1 className="text-4xl font-medium">Vaccine Service Center</h1>
-            <h3 className="text-xl font-serif">ใส่ข้อความประชาสัมพันธ์การให้บริการวัคซีนตรงนี้</h3>
+    <div
+      className={styles.banner}
+      onClick={() => {
+        setIndex((index + 1) % covers.length);
+      }}
+    >
+      <Image src={covers[index]} alt="cover" fill={true} objectFit="cover" />
+      {session ? (
+        <div className="z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl">
+          Hello {session.user?.name}
         </div>
-        <button className="bg-white text-cyan-600
+      ) : null}
+      <div className={styles.bannerText}>
+        <h1 className="text-4xl font-medium">Restaurant Reservation</h1>
+        <h3 className="text-xl font-serif">
+          Discover the culinary delights of our restaurant with a reservation,
+          where every dish tells a story of flavor and tradition.
+        </h3>
+      </div>
+      <button
+        className="bg-white text-cyan-600
           border border-cyan-600 font-semibold py-2 px-2
           m-2 rounded z-30 absolute bottom-0 right-0
           hover:bg-cyan-600 hover:text-white
           hover: border-transparent"
-          onClick={(e) => { e.stopPropagation(); router.push("/restaurant"); }}
-          >
-          Select Your Restaurant NOW
-        </button>
+        onClick={(e) => {
+          e.stopPropagation();
+          router.push("/restaurant");
+        }}
+      >
+        Reserve your seat now
+      </button>
     </div>
-  )
+  );
 }

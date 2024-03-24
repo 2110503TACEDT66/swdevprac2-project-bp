@@ -15,7 +15,7 @@ export default function Reservation() {
   const [name, setName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [citizenId, setCitizenId] = useState<string>("");
-  const [restaurant, setRestaurant] = useState<string>("Chula");
+  const [restaurant, setRestaurant] = useState<string>("Botanist");
   const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
 
   const makeReservation = () => {
@@ -32,7 +32,7 @@ export default function Reservation() {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="justify-center items-center min-h-screen">
       <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
         <div className="text-xl font-medium mb-6">Restaurant Reservation</div>
 

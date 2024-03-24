@@ -29,8 +29,8 @@ export default function Banner() {
           Welcome back! {session.user?.name}
         </div>
       ) : null}
-      <div className={styles.bannerText}>
-        <h1 className="text-4xl font-medium">Restaurant Reservation</h1>
+      <div className={styles.bannerText} >
+        <h1 className="text-4xl font-medium mix-blend-difference" >Restaurant Reservation</h1>
         <h3 className="text-xl font-serif">
           Discover the culinary delights of our restaurant with a reservation,
           where every dish tells a story of flavor and tradition.

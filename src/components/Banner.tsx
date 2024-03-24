@@ -22,8 +22,8 @@ export default function Banner() {
     >
       <Image src={covers[index]} alt="cover" fill={true} objectFit="cover" />
       {session ? (
-        <div className="z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl">
-          Hello {session.user?.name}
+        <div className="z-30 absolute top-5 right-10 font-semibold text-cyan-50 text-xl">
+          Welcome back! {session.user?.name}
         </div>
       ) : null}
       <div className={styles.bannerText}>

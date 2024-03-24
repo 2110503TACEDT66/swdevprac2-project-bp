@@ -110,3 +110,7 @@ a {
     color-scheme: dark;
   }
 } */
+
+body {
+  margin-top: 50px;
+}

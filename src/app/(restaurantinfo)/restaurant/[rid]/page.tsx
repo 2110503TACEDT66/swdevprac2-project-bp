@@ -58,23 +58,28 @@ export default async function RestaurantDetailPage( {params}: { params: {rid: st
   const restaurantData = mockRestaurantRepo.get(params.rid);
   
   return (
-    <main className="text-center p-5">
-        <div className="flex flex-row my-5">
-          <Image src={ restaurantData.picture } // TODO: Add image (restaurantData.picture)
-          alt="Restaurant Image" width={0} height={0}
-          sizes="100vw" className="rounded-lg w-[30%]"/>
-          <div className="text-md mx-5 text-left">
-            <div className="text-md mx-5">{ restaurantData.name }</div>
-            <div className="text-md mx-5">{ restaurantData.address }</div>
-            <div className="text-md mx-5">{ restaurantData.district }</div>
-            <div className="text-md mx-5">{ restaurantData.province }</div>
-            <div className="text-md mx-5">{ restaurantData.postalcode }</div>
-            <div className="text-md mx-5">{ restaurantData.tel }</div>
-            <div className="text-md mx-5">{ restaurantData.region }</div>
-          </div>
+    <main className="text-center p-5 mt-7">
+      <div className="flex flex-row my-5 items-center">
+        <Image
+          src={restaurantData.picture}
+          alt="Restaurant Image"
+          width={500} 
+          height={300} 
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="rounded-lg w-full md:w-[30%] object-cover"
+        />
+        <div className="text-md mx-5 text-left">
+          <h2 className="text-lg font-bold">{restaurantData.name}</h2>
+          <p>{restaurantData.address}</p>
+          <p>{restaurantData.district}</p>
+          <p>{restaurantData.province}</p>
+          <p>{restaurantData.postalcode}</p>
+          <p>{restaurantData.tel}</p>
+          <p>{restaurantData.region}</p>
         </div>
+      </div>
     </main>
-  )
+  );
 }
 
 // export async function generateStaticParams() {

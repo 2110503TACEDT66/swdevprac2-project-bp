@@ -16,7 +16,16 @@ export interface RestaurantItem {
 export interface RestaurantJson {
   success: boolean;
   count: number;
-  pagination: Object;
+  pagination: {
+    next?: {
+      page: number;
+      limit: number;
+    },
+    prev?: {
+      page: number;
+      limit: number;
+    },
+  };
   data: RestaurantItem[];
 }
 

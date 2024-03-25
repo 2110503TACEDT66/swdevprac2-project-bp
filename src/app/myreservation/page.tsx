@@ -8,6 +8,7 @@ export default function CartPage() {
     const { data: session } = useSession();
     const [reservations, setReservations] = useState<ReservationJson>();
     const [isLoading, setIsLoading] = useState(false);
+    const [shouldRefetch, setShouldRefetch] = useState(0);
     useEffect(() => {
         const fetchReservations = async () => {
             setIsLoading(true);
@@ -34,7 +35,7 @@ export default function CartPage() {
         };
 
         fetchReservations();
-    }, []);
+    }, [shouldRefetch]);
 
     return (
         <>
@@ -44,6 +45,7 @@ export default function CartPage() {
                 <ReservationList
                     reservationJson={reservations}
                     token={`${session?.user.token}`}
+                    onReservationChange={() => setShouldRefetch((prev) => prev + 1)}
                 />
             ) : (
                 <p>pls login</p>

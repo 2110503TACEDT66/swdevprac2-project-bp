@@ -4,9 +4,18 @@ import { AppDispatch, useAppSelector } from "@/redux/store"
 import { useDispatch } from "react-redux";
 import { ReservationItem, ReservationJson } from "../../interface";
 import { useRouter } from "next/navigation";
-export default function ReservationList ({reservationJson, token}:{reservationJson:ReservationJson, token:string}) {
+interface ReservationListProps {
+    reservationJson: ReservationJson;
+    token: string;
+    onReservationChange: () => void; // Define the prop for triggering refetch
+}
+export default function ReservationList({
+    reservationJson,
+    token,
+    onReservationChange, // Receive the prop
+}: ReservationListProps) {
     const router = useRouter();
-	/*const reserveItems = useAppSelector((state)=> state.reserveSlice.reserveItems);
+    /*const reserveItems = useAppSelector((state)=> state.reserveSlice.reserveItems);
     const dispatch = useDispatch<AppDispatch>();
     
 	return (
@@ -35,7 +44,7 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
             </div>
         );
 
-    const deleteReservation = async (id:string) => {
+    const deleteReservation = async (id: string) => {
         const res = await fetch(
             `https://presentation-day-1-bp-pearl.vercel.app/api/v1/reservations/${id}`,
             {
@@ -49,8 +58,8 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
             throw new Error("Failed to delete reservation");
         }
         console.log("Reservation deleted");
-        
-    }
+        onReservationChange();
+    };
 
     return (
         <>
@@ -65,11 +74,15 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
                     <div className="text-md">User: {reservationItem.user}</div>{" "}
                     {/* Accessing the 'name' property */}
                     <div className="text-md">
-                        Appointment Date: {(new Date(reservationItem.apptDate)).toLocaleDateString("en-US")}
+                        Appointment Date:{" "}
+                        {new Date(reservationItem.apptDate).toLocaleDateString(
+                            "en-US"
+                        )}
                     </div>{" "}
                     {/* Accessing the 'name' property */}
                     <div className="text-md">
-                        Created At: {(new Date(reservationItem.createdAt)).toUTCString()}
+                        Created At:{" "}
+                        {new Date(reservationItem.createdAt).toUTCString()}
                     </div>
                     <div className="flex flex-row space-x-3">
                         <form
@@ -100,5 +113,4 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
             ))}
         </>
     );
-        
 }

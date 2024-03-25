@@ -11,12 +11,8 @@ import { Select, MenuItem, TextField } from "@mui/material";
 
 export default function ReservationEdit({
     params,
-    restaurantId,
-    apptDate,
 }: {
     params: { reservation_ID: string };
-    restaurantId: string;
-    apptDate: string;
 }) {
     const [restaurant, setRestaurant] = useState<string>("");
     const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);

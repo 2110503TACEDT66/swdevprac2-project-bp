@@ -3,8 +3,9 @@ import { removeReservation } from "@/redux/features/reserveSlice";
 import { AppDispatch, useAppSelector } from "@/redux/store"
 import { useDispatch } from "react-redux";
 import { ReservationItem, ReservationJson } from "../../interface";
-
+import { useRouter } from "next/navigation";
 export default function ReservationList ({reservationJson, token}:{reservationJson:ReservationJson, token:string}) {
+    const router = useRouter();
 	/*const reserveItems = useAppSelector((state)=> state.reserveSlice.reserveItems);
     const dispatch = useDispatch<AppDispatch>();
     
@@ -48,7 +49,9 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
             throw new Error("Failed to delete reservation");
         }
         console.log("Reservation deleted");
+        
     }
+
     return (
         <>
             {reservationJson.data.map((reservationItem: ReservationItem) => (
@@ -68,18 +71,31 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
                     <div className="text-md">
                         Created At: {reservationItem.createdAt}
                     </div>
-                    <form
-                        action={() =>
-                            deleteReservation(reservationItem._id)
-                        }
-                    >
+                    <div className="flex flex-row space-x-3">
+                        <form
+                            action={() =>
+                                deleteReservation(reservationItem._id)
+                            }
+                        >
+                            <button
+                                className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1
+                text-white shadow-sm"
+                            >
+                                Remove Reservation
+                            </button>
+                        </form>
                         <button
                             className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1
                 text-white shadow-sm"
+                            onClick={() => {
+                                router.push(
+                                    `/reservation/${reservationItem._id}/edit`
+                                );
+                            }}
                         >
-                            Remove Reservation
+                            Edit Reservation
                         </button>
-                    </form>
+                    </div>
                 </div>
             ))}
         </>

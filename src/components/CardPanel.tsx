@@ -60,13 +60,13 @@ export default function CardPanel() {
         </div>
         {
             restaurantResponse.pagination.prev
-            ? <button onClick={() => {setPage(restaurantResponse.pagination.prev.page)}}>Prev</button>
+            ? <button onClick={() => {setPage(restaurantResponse.pagination.prev!.page)}}>Prev</button>
             : null
         }
         <div>Page: {page}</div>
         {
             restaurantResponse.pagination.next
-            ? <button onClick={() => {setPage(restaurantResponse.pagination.next.page)}}>Next</button>
+            ? <button onClick={() => {setPage(restaurantResponse.pagination.next!.page)}}>Next</button>
             : null
         }
       </div>

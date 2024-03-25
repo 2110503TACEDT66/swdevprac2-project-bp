@@ -5,10 +5,10 @@ import { ReservationJson } from "../../../interface";
 import { useSession } from "next-auth/react";
 
 export default function CartPage() {
-    const { data: session } = useSession();
+    const { data: session } = useSession();;
     const [reservations, setReservations] = useState<ReservationJson>();
     const [isLoading, setIsLoading] = useState(false);
-    const [shouldRefetch, setShouldRefetch] = useState(0);
+    const [shouldRefetch, setShouldRefetch] = useState(false);
     useEffect(() => {
         const fetchReservations = async () => {
             setIsLoading(true);
@@ -44,8 +44,8 @@ export default function CartPage() {
             ) : reservations ? (
                 <ReservationList
                     reservationJson={reservations}
-                    token={`${session?.user.token}`}
-                    onReservationChange={() => setShouldRefetch((prev) => prev + 1)}
+                    onReservationChange={() => setShouldRefetch((prev) => !prev)}
+                    session={session}
                 />
             ) : (
                 <p>pls login</p>
@@ -53,4 +53,3 @@ export default function CartPage() {
         </>
     );
 }
-//{reservations && <ReservationList reservationJson={reservations} />}

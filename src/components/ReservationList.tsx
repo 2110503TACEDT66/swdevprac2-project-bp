@@ -1,42 +1,20 @@
-
 import { removeReservation } from "@/redux/features/reserveSlice";
-import { AppDispatch, useAppSelector } from "@/redux/store"
+import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { ReservationItem, ReservationJson } from "../../interface";
 import { useRouter } from "next/navigation";
 interface ReservationListProps {
     reservationJson: ReservationJson;
-    token: string;
-    onReservationChange: () => void; // Define the prop for triggering refetch
+    onReservationChange: () => void;
+    session: any;
 }
 export default function ReservationList({
     reservationJson,
-    token,
-    onReservationChange, // Receive the prop
+    onReservationChange,
+    session,
 }: ReservationListProps) {
     const router = useRouter();
-    /*const reserveItems = useAppSelector((state)=> state.reserveSlice.reserveItems);
-    const dispatch = useDispatch<AppDispatch>();
-    
-	return (
-		<>
-		{
-            (reserveItems.length > 0) ? reserveItems.map((reservationItem)=> (
-                <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={reservationItem.id}>
-                <div className="text-xl">Name: {reservationItem.name}</div>
-                <div className="text-xl">Surname: {reservationItem.surname}</div>
-                <div className="text-md">Citizen ID: {reservationItem.id}</div>
-                <div className="text-md">Restaurant: {reservationItem.restaurant}</div>
-                <div className="text-md">Reserve date: {reservationItem.reserveDate}</div>
-                <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1
-                text-white shadow-sm" onClick={() => dispatch(removeReservation(reservationItem.id))}>
-                    Remove Reservation
-                </button>
-                </div>
-            )) : <div className="text-xl text-center mx-5 my-2">No Restaurant Reservation</div>
-        }
-        </>
-    )*/
+    const token = session?.user.token;
     if (reservationJson.count == 0)
         return (
             <div className="text-xl text-center mx-5 my-2">
@@ -84,21 +62,18 @@ export default function ReservationList({
                         Created At:{" "}
                         {new Date(reservationItem.createdAt).toUTCString()}
                     </div>
-                    <div className="flex flex-row space-x-3">
-                        <form
-                            action={() =>
+                    <div className="flex space-x-3 mt-1">
+                        <button
+                            className="block rounded-md bg-rose-500 hover:bg-red-600 px-3 py-1
+                text-white shadow-sm"
+                            onClick={() =>
                                 deleteReservation(reservationItem._id)
                             }
                         >
-                            <button
-                                className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1
-                text-white shadow-sm"
-                            >
-                                Remove Reservation
-                            </button>
-                        </form>
+                            Remove Reservation
+                        </button>
                         <button
-                            className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-1
+                            className="block rounded-md bg-cyan-500 hover:bg-sky-600 px-3 py-1
                 text-white shadow-sm"
                             onClick={() => {
                                 router.push(

@@ -51,7 +51,7 @@ export default function ReservationEdit({
     return (
         <main className="justify-center items-center min-h-screen">
             <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-                <div className="text-xl font-medium mb-6">
+                <div className="text-xl font-medium mb-6 text-center">
                     Edit Restaurant Reservation
                 </div>
 
@@ -90,7 +90,7 @@ export default function ReservationEdit({
                     <div className="text-center mt-6">
                         <button
                             name="Reserve Restaurant"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                         >
                             Update Reserve
                         </button>

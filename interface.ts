@@ -21,9 +21,22 @@ export interface RestaurantJson {
 }
 
 export interface ReservationItem {
-  name: string;
-  surname: string;
-  id: string;
-  restaurant: string;
-  reserveDate: string;
+    _id: string;
+    apptDate: string;
+    user: string;
+    restaurant: {
+        _id: string;
+        name: string;
+        province: string;
+        tel: string;
+        id: string;
+    };
+    createdAt: string;
+}
+
+
+export interface ReservationJson {
+    success: boolean;
+    count: number;
+    data: ReservationItem[];
 }

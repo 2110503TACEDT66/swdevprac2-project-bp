@@ -1,6 +1,6 @@
 "use client"
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
 import userRegister from '@/libs/userRegister';
 
@@ -11,17 +11,19 @@ export default function RegisterPage() {
     const [password, setPassword] = useState('');
     const { data: session } = useSession();
     const router = useRouter();
+    const urlParams = useSearchParams();
+    const callbackUrl = urlParams.get("callbackUrl") || "/myreservation";
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         
         await signIn("credentials", { email: email, password: password })
 
-        router.push('/myreservation');
+        router.push(callbackUrl);
     };
 
     if (session) {
-        router.push('/myreservation');
+        router.push(callbackUrl);
         return null;
     }
 

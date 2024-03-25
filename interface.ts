@@ -40,3 +40,19 @@ export interface ReservationJson {
     count: number;
     data: ReservationItem[];
 }
+
+export interface UserItem {
+    _id: string;
+    __v: number;
+    name: string;
+    email: string;
+    role: string;
+    tel: string;
+    createdAt: string;
+}
+
+
+export interface UserJson {
+    success: boolean;
+    data: UserItem;
+}

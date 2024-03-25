@@ -4,11 +4,12 @@ import getUserProfile from "@/libs/getUserProfile"
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { UserItem } from "../../../interface";
 
 export default function Dashboard() {
     const { data: session } = useSession();
     const router = useRouter();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<UserItem|null>(null);
 
     if (!session) {
         return null;

@@ -15,11 +15,16 @@ export default function ReservationList({
 }: ReservationListProps) {
     const router = useRouter();
     const token = session?.user.token;
-    if (reservationJson.count == 0)
+    if (!reservationJson || reservationJson.count == 0)
         return (
-            <div className="text-xl text-center mx-5 my-2">
-                No Restaurant Reservation
+          <div className="flex flex-col items-center justify-center h-screen">
+            <div className="text-3xl text-center text-gray-600 font-bold mb-4">
+              No Restaurant Reservation
             </div>
+            <div className="text-lg text-center text-gray-500">
+              You haven't made any restaurant reservation yet.
+            </div>
+          </div>
         );
 
     const deleteReservation = async (id: string) => {

@@ -1,51 +1,81 @@
-"use client"
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { signIn, useSession } from 'next-auth/react';
-import userRegister from '@/libs/userRegister';
+"use client";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
-export default function RegisterPage() {
-    const [name, setName] = useState('');
-    const [tel, setTel] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { data: session } = useSession();
-    const router = useRouter();
-    const urlParams = useSearchParams();
-    const callbackUrl = urlParams.get("callbackUrl") || "/myreservation";
+export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { data: session } = useSession();
+  const router = useRouter();
+  const urlParams = useSearchParams();
+  const callbackUrl = urlParams.get("callbackUrl") || "/myreservation";
 
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        try {
-            await signIn("credentials", { email: email, password: password })
-        } catch (error) {
-            alert("Invalid login. Please try again.")
-        }
-        
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-        router.push(callbackUrl);
-    };
-
-    if (session) {
-        router.push(callbackUrl);
-        return null;
+    try {
+      await signIn("credentials", { email: email, password: password });
+    } catch (error) {
+      alert("Invalid login. Please try again.");
     }
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
-};
+    router.push(callbackUrl);
+  };
+
+  if (session) {
+    router.push(callbackUrl);
+    return null;
+  }
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        mt: 4,
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Login
+      </Typography>
+      <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          color="inherit"
+        >
+          Login
+        </Button>
+      </Box>
+    </Box>
+  );
+}

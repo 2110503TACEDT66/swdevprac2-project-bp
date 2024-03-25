@@ -65,11 +65,11 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
                     <div className="text-md">User: {reservationItem.user}</div>{" "}
                     {/* Accessing the 'name' property */}
                     <div className="text-md">
-                        Appointment Date: {reservationItem.apptDate}
+                        Appointment Date: {(new Date(reservationItem.apptDate)).toLocaleDateString("en-US")}
                     </div>{" "}
                     {/* Accessing the 'name' property */}
                     <div className="text-md">
-                        Created At: {reservationItem.createdAt}
+                        Created At: {(new Date(reservationItem.createdAt)).toUTCString()}
                     </div>
                     <div className="flex flex-row space-x-3">
                         <form

@@ -7,6 +7,7 @@ import Link from "next/link"
 
 export default async function TopMenu() {
   const session = await getServerSession(authOptions)
+  console.log(session)
   
   return (
     <div className={styles.menucontainer}>
@@ -17,6 +18,11 @@ export default async function TopMenu() {
         <TopMenuItem title="Reservation" pageRef="/reservation"/>
         <div className="flex flex-row absolute right-0 h-full">
           <TopMenuItem title="My Reservation" pageRef="/myreservation"/>
+          {
+                (session?.user.role == "admin")
+                ? <TopMenuItem title="Add new restaurant" pageRef="/error"/>
+                : null
+          }
           {
             session ? <Link href="/api/auth/signout">
               <div className="flex items-center h-full px-2 text-cyan-600 text—sm font-bold">

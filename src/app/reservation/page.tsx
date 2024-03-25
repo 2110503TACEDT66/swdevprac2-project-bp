@@ -9,6 +9,7 @@ import { ReservationItem, RestaurantJson } from "../../../interface";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import reserveRestaurant from "@/libs/reserveRestaurant";
 
 export default function Reservation() {
   /*const dispatch = useDispatch<AppDispatch>();
@@ -126,23 +127,8 @@ export default function Reservation() {
  const makeReservation = async(restaurantId:string) => {
   if (reserveDate && restaurantId) {
     console.log(token, restaurantId);
-      const res = await fetch(
-          `https://presentation-day-1-bp-pearl.vercel.app/api/v1/restaurants/${restaurantId}/reservations/`,
-          {
-              method: "POST",
-              headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                  apptDate: reserveDate.toDate(),
-              }),
-          }
-      );
-      if (!res.ok) {
-          throw new Error("Failed to make reservation");
-      }
-      console.log("Reservation created");
+    await reserveRestaurant(token, restaurantId, reserveDate);
+    console.log("Reservation created");
   }
  }
  return (

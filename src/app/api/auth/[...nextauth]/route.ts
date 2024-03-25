@@ -22,9 +22,7 @@ export const authOptions: AuthOptions = {
                 if (!credentials) return null
                 const user = await userLogIn(credentials.email, credentials.password);
                 const userData = (await getUserProfile(user.token)).data;
-                user._id = userData._id
-                user.name = userData.name
-                user.email = userData.email
+                Object.assign(user, userData);
 
                 if (user) {
                     // Included in JWT token

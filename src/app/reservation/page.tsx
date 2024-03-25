@@ -54,10 +54,10 @@ export default function Reservation() {
                             <MenuItem value="660145646b8f32166dd6ef88">
                                 The Botanist's Table
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf65fa">
+                            <MenuItem value="660146156b8f32166dd6ef89">
                                 Brick & Brew
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf6613">
+                            <MenuItem value="6601464e6b8f32166dd6ef8a">
                                 Metropolitan Skylight
                             </MenuItem>
                         </Select>

@@ -6,7 +6,7 @@ import Link from "next/link"
 import { ElfsightWidget } from "next-elfsight-widget"
 import { useSession } from "next-auth/react"
 
-export default async function TopMenu() {
+export default function TopMenu() {
   const { data: session, status } = useSession();
 
   // console.log(session)

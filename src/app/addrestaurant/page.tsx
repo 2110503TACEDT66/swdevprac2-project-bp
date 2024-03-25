@@ -20,7 +20,7 @@ export default function AddRestaurant() {
     async function sendForm() {
         try {
             await addRestaurant(
-                session?.user.token,
+                session?.user.token ?? "",
                 name,
                 address,
                 district,

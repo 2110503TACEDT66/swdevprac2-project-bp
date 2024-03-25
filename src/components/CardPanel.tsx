@@ -4,7 +4,15 @@ import Card from "./Card";
 import Link from "next/link";
 import getRestaurants from "@/libs/getRestaurants";
 import { RestaurantItem, RestaurantJson } from "../../interface";
-import { LinearProgress, Box } from "@mui/material";
+import { LinearProgress, Box, createTheme, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Quicksand", // or any other font family you prefer
+    // add any other typography settings here
+  },
+  // add any other theme settings here
+});
 
 export default function CardPanel() {
   const [restaurantResponse, setRestaurantResponse] =
@@ -63,56 +71,58 @@ export default function CardPanel() {
   }
 
   return (
-    <div>
-      <div
-        style={{
-          margin: "20px",
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-          alignContent: "space-around",
-        }}
-      >
-        {restaurantResponse.data.map((restaurantItem: RestaurantItem) => (
-          <Link
-            href={`/restaurant/${restaurantItem.id}`}
-            className="w-1/5"
-            key={restaurantItem.id}
+    <ThemeProvider theme={theme}>
+      <div>
+        <div
+          style={{
+            margin: "20px",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            alignContent: "space-around",
+          }}
+        >
+          {restaurantResponse.data.map((restaurantItem: RestaurantItem) => (
+            <Link
+              href={`/restaurant/${restaurantItem.id}`}
+              className="w-1/5"
+              key={restaurantItem.id}
+            >
+              <Card
+                restaurantName={restaurantItem.name}
+                imgSrc={restaurantItem.picture}
+                onCompare={(restaurant: string, rating: number) =>
+                  dispatchCompare({
+                    type: "add",
+                    restaurantName: restaurant,
+                    rating: rating,
+                  })
+                }
+              />
+            </Link>
+          ))}
+        </div>
+        {restaurantResponse.pagination.prev ? (
+          <button
+            onClick={() => {
+              setPage(restaurantResponse.pagination.prev!.page);
+            }}
           >
-            <Card
-              restaurantName={restaurantItem.name}
-              imgSrc={restaurantItem.picture}
-              onCompare={(restaurant: string, rating: number) =>
-                dispatchCompare({
-                  type: "add",
-                  restaurantName: restaurant,
-                  rating: rating,
-                })
-              }
-            />
-          </Link>
-        ))}
+            Prev
+          </button>
+        ) : null}
+        <div>Page: {page}</div>
+        {restaurantResponse.pagination.next ? (
+          <button
+            onClick={() => {
+              setPage(restaurantResponse.pagination.next!.page);
+            }}
+          >
+            Next
+          </button>
+        ) : null}
       </div>
-      {restaurantResponse.pagination.prev ? (
-        <button
-          onClick={() => {
-            setPage(restaurantResponse.pagination.prev!.page);
-          }}
-        >
-          Prev
-        </button>
-      ) : null}
-      <div>Page: {page}</div>
-      {restaurantResponse.pagination.next ? (
-        <button
-          onClick={() => {
-            setPage(restaurantResponse.pagination.next!.page);
-          }}
-        >
-          Next
-        </button>
-      ) : null}
-    </div>
+    </ThemeProvider>
   );
 }

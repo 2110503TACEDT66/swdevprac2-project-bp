@@ -15,8 +15,8 @@ export default function PromoteCard() {
             <VideoPlayer vdoSrc="/video/getrestaurant.mp4" isPlaying={playing}/>
             <div className="m-5 text-black">
                 Get your seat now.
-                <button className="block rounded-md bg-sky-600
-                    hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
+                <button className="block rounded-md bg-red-600
+                    hover:bg-amber-800 px-3 py-2 text-white shadow-sm"
                     onClick={() => { setPlaying(!playing) }}>
                     { playing ? "Pause" : "Play" }
                 </button>

@@ -23,7 +23,7 @@ export default function Reservation() {
             try {
               await reserveRestaurant(token, restaurantId, reserveDate);
               alert("Reservation created");
-            } catch (error) {
+            } catch (error: any) {
               alert(error.message ?? "Reservation not created. The restaurant may already exist, or you may not have the correct permissions to add a restaurant");
             }
         }

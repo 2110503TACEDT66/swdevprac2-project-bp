@@ -20,8 +20,12 @@ export default function Reservation() {
     const makeReservation = async (restaurantId: string) => {
         if (reserveDate && restaurantId) {
             console.log(token, restaurantId);
-            await reserveRestaurant(token, restaurantId, reserveDate);
-            console.log("Reservation created");
+            try {
+              await reserveRestaurant(token, restaurantId, reserveDate);
+              alert("Reservation created");
+            } catch (error) {
+              alert(error.message ?? "Reservation not created. The restaurant may already exist, or you may not have the correct permissions to add a restaurant");
+            }
         }
     };
     return (
@@ -47,7 +51,7 @@ export default function Reservation() {
                             <MenuItem disabled value="">
                                 <em>Choose Restaurant</em>
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf660d">
+                            <MenuItem value="660145646b8f32166dd6ef88">
                                 The Botanist's Table
                             </MenuItem>
                             <MenuItem value="65e481c436609831cbcf65fa">

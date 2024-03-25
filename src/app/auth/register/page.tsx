@@ -15,10 +15,14 @@ export default function RegisterPage() {
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        await userRegister(name, tel, email, password)
-        await signIn("credentials", { email: email, password: password })
+        try {
+            await userRegister(name, tel, email, password)
+            await signIn("credentials", { email: email, password: password })
 
-        router.push('/myreservation');
+            router.push('/myreservation');
+        } catch (error) {
+            alert("Invalid registration. Please try again.")
+        }
     };
 
     if (session) {

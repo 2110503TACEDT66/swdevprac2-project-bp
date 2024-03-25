@@ -8,12 +8,14 @@ import dayjs, { Dayjs } from "dayjs";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Select, MenuItem, TextField } from "@mui/material";
+import { useParams, useRouter } from "next/navigation";
 
 export default function ReservationEdit({
     params,
 }: {
     params: { reservation_ID: string };
 }) {
+    const router = useRouter();
     const [restaurant, setRestaurant] = useState<string>("");
     const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
 
@@ -38,9 +40,11 @@ export default function ReservationEdit({
                 }
             );
             if (!res.ok) {
-                throw new Error("Failed to update reservation");
+                alert("Failed to update reservation");
+            } else {
+                alert("Reservation updated");
+                router.push("/myreservation");
             }
-            console.log("Reservation updated");
         }
     };
 
@@ -67,13 +71,13 @@ export default function ReservationEdit({
                             <MenuItem disabled value="">
                                 <em>Choose Restaurant</em>
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf660d">
+                            <MenuItem value="660145646b8f32166dd6ef88">
                                 The Botanist's Table
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf65fa">
+                            <MenuItem value="660146156b8f32166dd6ef89">
                                 Brick & Brew
                             </MenuItem>
-                            <MenuItem value="65e481c436609831cbcf6613">
+                            <MenuItem value="6601464e6b8f32166dd6ef8a">
                                 Metropolitan Skylight
                             </MenuItem>
                         </Select>
@@ -88,7 +92,7 @@ export default function ReservationEdit({
                             name="Reserve Restaurant"
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                         >
-                            Update Reserve
+                            Update Reservation
                         </button>
                     </div>
                 </form>

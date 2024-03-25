@@ -8,14 +8,16 @@ import { RestaurantItem, RestaurantJson } from "../../interface";
 export default function CardPanel() {
     const [restaurantResponse, setRestaurantResponse] = useState<RestaurantJson|null>(null);
 
+    const [page, setPage] = useState(1);
+
     useEffect(() => {
         const fetchData = async () => {
-            const cars = await getRestaurants();
-            setRestaurantResponse(cars);
+            const restaurants = await getRestaurants(page);
+            setRestaurantResponse(restaurants);
         }
     
         fetchData();
-    }, [])
+    }, [page])
     
     const compareReducer = ( compareList: Map<string, number>, action: { type: string, restaurantName: string, rating?: number } ) => {
         switch (action.type) {
@@ -56,6 +58,17 @@ export default function CardPanel() {
             ))
         }
         </div>
+        {
+            restaurantResponse.pagination.prev
+            ? <button onClick={() => {setPage(restaurantResponse.pagination.prev.page)}}>Prev</button>
+            : null
+        }
+        <div>Page: {page}</div>
+        {
+            restaurantResponse.pagination.next
+            ? <button onClick={() => {setPage(restaurantResponse.pagination.next.page)}}>Next</button>
+            : null
+        }
       </div>
     )
   }

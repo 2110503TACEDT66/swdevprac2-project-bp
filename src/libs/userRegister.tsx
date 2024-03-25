@@ -16,7 +16,7 @@ export default async function userRegister(name: string, tel: string, userEmail:
     })
     
     if (!response.ok) {
-        throw new Error("Failed to log-in");
+        throw new Error("Failed to register user");
     }
     return await response.json();
 }

@@ -26,6 +26,9 @@ const nextConfig = withBuilderDevTools({
       },
     ];
   },
+  experimental: {
+    serverActions: true,
+  },
 });
 
 module.exports = nextConfig;

@@ -41,15 +41,13 @@ export default function CartPage() {
         <>
             {isLoading ? (
                 <p>Loading...</p>
-            ) : reservations ? (
+            ) : (
                 <ReservationList
-                    reservationJson={reservations}
+                    reservationJson={reservations!}
                     onReservationChange={() => setShouldRefetch((prev) => !prev)}
                     session={session}
                 />
-            ) : (
-                <p>pls login</p>
-            )}{" "}
+            )}
         </>
     );
 }

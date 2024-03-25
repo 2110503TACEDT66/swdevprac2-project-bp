@@ -18,7 +18,11 @@ export default async function reserveRestaurant(token: string, restaurantId: str
     );
 
     if (!response.ok) {
-        throw new Error("Failed to make reservation");
+        if (response.status === 400) {
+            const result = await response.json();
+            throw new Error(result.message);
+        }
+        throw new Error("Unknown error occurred");
     }
 
     return await response.json();

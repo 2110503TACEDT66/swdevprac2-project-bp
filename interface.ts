@@ -30,7 +30,8 @@ export interface RestaurantJson {
 }
 
 export interface ReservationItem {
-    _id: string;
+  _id: string;
+  id: string;
     apptDate: string;
     user: string;
     restaurant: {

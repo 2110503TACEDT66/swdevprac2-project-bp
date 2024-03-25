@@ -42,7 +42,6 @@ export default function CartPage() {
                 <p>Loading...</p>
             ) : reservations ? (
                 <ReservationList
-                    reservationJson={reservations}
                     token={`${session?.user.token}`}
                 />
             ) : (

@@ -20,7 +20,7 @@ export default async function TopMenu() {
           <TopMenuItem title="My Reservation" pageRef="/myreservation"/>
           {
                 (session?.user.role == "admin")
-                ? <TopMenuItem title="Add new restaurant" pageRef="/error"/>
+                ? <TopMenuItem title="Add new restaurant" pageRef="/addrestaurant"/>
                 : null
           }
           {

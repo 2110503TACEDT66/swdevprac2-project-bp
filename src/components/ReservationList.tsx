@@ -4,7 +4,8 @@ import { AppDispatch, useAppSelector } from "@/redux/store"
 import { useDispatch } from "react-redux";
 import { ReservationItem, ReservationJson } from "../../interface";
 import { useRouter } from "next/navigation";
-export default function ReservationList ({reservationJson, token}:{reservationJson:ReservationJson, token:string}) {
+import { useEffect, useState } from "react";
+export default function ReservationList ({token}:{token:string}) {
     const router = useRouter();
 	/*const reserveItems = useAppSelector((state)=> state.reserveSlice.reserveItems);
     const dispatch = useDispatch<AppDispatch>();
@@ -28,14 +29,32 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
         }
         </>
     )*/
-    if (reservationJson.count == 0)
-        return (
-            <div className="text-xl text-center mx-5 my-2">
-                No Restaurant Reservation
-            </div>
+
+    const [ reservationJson, setReservationJson ] = useState<ReservationJson>({count: 0, data: []});
+
+    const fetchReservations = async () => {
+        if (!token) {
+            console.log("Token not available");
+            return;
+        }
+
+        const res = await fetch(
+            "https://presentation-day-1-bp-pearl.vercel.app/api/v1/reservations",
+            {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
         );
 
+        const data: ReservationJson = await res.json();
+        console.log(data);
+        setReservationJson(data);
+    }
+
     const deleteReservation = async (id:string) => {
+        if (!confirm("Are you sure you want to delete this reservation?")) return;
         const res = await fetch(
             `https://presentation-day-1-bp-pearl.vercel.app/api/v1/reservations/${id}`,
             {
@@ -48,9 +67,21 @@ export default function ReservationList ({reservationJson, token}:{reservationJs
         if (!res.ok) {
             throw new Error("Failed to delete reservation");
         }
-        console.log("Reservation deleted");
-        
+        alert("Reservation deleted");
+        await fetchReservations();
     }
+
+    useEffect(() => {
+        fetchReservations();
+    }, [])
+
+    if (reservationJson.count == 0)
+        return (
+            <div className="text-xl text-center mx-5 my-2">
+                No Restaurant Reservation
+            </div>
+        );
+
 
     return (
         <>

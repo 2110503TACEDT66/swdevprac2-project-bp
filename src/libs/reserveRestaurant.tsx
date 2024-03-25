@@ -18,7 +18,7 @@ export default async function reserveRestaurant(token: string, restaurantId: str
     );
 
     if (!response.ok) {
-        throw new Error("Failed to make reservation");
+        throw new Error((await response.json()).message);
     }
 
     return await response.json();

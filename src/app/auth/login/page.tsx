@@ -17,7 +17,12 @@ export default function RegisterPage() {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        await signIn("credentials", { email: email, password: password })
+        try {
+            await signIn("credentials", { email: email, password: password })
+        } catch (error) {
+            alert("Invalid login. Please try again.")
+        }
+        
 
         router.push(callbackUrl);
     };

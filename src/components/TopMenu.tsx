@@ -40,12 +40,12 @@ export default function TopMenu() {
         ) : (
           <>
             <Link href="/auth/login">
-              <div className="flex items-center h-full px-2 text-cyan-600 text—sm font-bold">
+              <div className="flex items-center h-full px-2 text-red-600 text—sm font-bold">
                 Login
               </div>
             </Link>
             <Link href="/auth/register">
-              <div className="flex items-center h-full px-2 text-cyan-600 text—sm font-bold">
+              <div className="flex items-center h-full px-2 text-red-600 text—sm font-bold">
                 Register
               </div>
             </Link>
